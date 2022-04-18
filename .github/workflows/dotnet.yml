@@ -24,7 +24,7 @@ jobs:
     
     - name: Create additional database
       run: |
-        sudo -u postgres createdb --owner=testuser TestDatabase
+        sudo -u postgres createdb TestDatabase --owner=testuser 
         PGPASSWORD=password psql --username=testuser --host=localhost 
     
     - uses: actions/checkout@v3
