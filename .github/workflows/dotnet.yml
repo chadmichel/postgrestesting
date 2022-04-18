@@ -27,11 +27,17 @@ jobs:
         sudo -u postgres createdb TestDatabase --owner=testuser 
         PGPASSWORD=password 
     
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+        
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 5.0.x
+        
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
