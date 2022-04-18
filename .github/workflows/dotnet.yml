@@ -20,12 +20,12 @@ jobs:
     
     - name: Create additional user
       run: |
-        sudo -u postgres psql --command="CREATE USER joe PASSWORD 'foo'" --command="\du"
+        sudo -u postgres psql --command="CREATE USER testuser PASSWORD 'password'" --command="\du"
     
     - name: Create additional database
       run: |
-        sudo -u postgres createdb --owner=joe Test
-        PGPASSWORD=foo psql --username=joe --host=localhost --list timetable
+        sudo -u postgres createdb --owner=testuser TestDatabase
+        PGPASSWORD=password psql --username=testuser --host=localhost --list timetable
     
     - uses: actions/checkout@v3
     - name: Setup .NET
