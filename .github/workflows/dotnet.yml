@@ -25,7 +25,7 @@ jobs:
     - name: Create additional database
       run: |
         sudo -u postgres createdb TestDatabase --owner=testuser 
-        PGPASSWORD=password psql --username=testuser --host=localhost 
+        PGPASSWORD=password 
     
     - uses: actions/checkout@v3
     - name: Setup .NET
