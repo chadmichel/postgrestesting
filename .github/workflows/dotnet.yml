@@ -7,11 +7,26 @@ on:
     branches: [ main ]
 
 jobs:
+      
   build:
 
     runs-on: ubuntu-latest
 
     steps:
+    - name: Start PostgreSQL on Ubuntu
+      run: |
+        sudo systemctl start postgresql.service
+        pg_isready
+    
+    - name: Create additional user
+      run: |
+        sudo -u postgres psql --command="CREATE USER joe PASSWORD 'foo'" --command="\du"
+    
+    - name: Create additional database
+      run: |
+        sudo -u postgres createdb --owner=joe Test
+        PGPASSWORD=foo psql --username=joe --host=localhost --list timetable
+    
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
