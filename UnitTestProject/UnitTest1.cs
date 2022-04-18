@@ -1,4 +1,6 @@
+using System;
 using NUnit.Framework;
+using PostgresSampleApp;
 
 namespace UnitTestProject;
 
@@ -13,5 +15,20 @@ public class Tests
     public void Test1()
     {
         Assert.Pass();
+    }
+    
+    [Test]
+    public void Test2()
+    {
+        Console.WriteLine("Hello, World!");
+        
+        var db = new TestDatabase();
+        db.Contacts.Add(new Contact()
+        {
+            Name = "hi"
+        });
+        db.SaveChanges();
+        
+        Console.WriteLine("Bye, World!");
     }
 }
