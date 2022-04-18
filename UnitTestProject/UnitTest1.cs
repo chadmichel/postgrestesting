@@ -23,6 +23,7 @@ public class Tests
         Console.WriteLine("Hello, World!");
         
         var db = new TestDatabase();
+        db.Database.EnsureCreated();
         db.Contacts.Add(new Contact()
         {
             Name = "hi"
